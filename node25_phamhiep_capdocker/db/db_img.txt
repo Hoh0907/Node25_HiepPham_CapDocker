@@ -1,0 +1,35 @@
+CREATE TABLE users(
+nguoi_dung_id INT PRIMARY KEY AUTO_INCREMENT, 
+email VARCHAR(255),
+mat_khau VARCHAR(255),
+ho_ten varchar(255),
+tuoi INT,
+anh_dai_dien VARCHAR(255)
+)
+
+CREATE TABLE img(
+hinh_id INT PRIMARY KEY AUTO_INCREMENT, 
+ten_hinh varchar(255),
+duong_dan VARCHAR(255),
+mo_ta VARCHAR(255),
+tuoi int,
+nguoi_dung_id int, FOREIGN KEY (nguoi_dung_id) REFERENCES users(nguoi_dung_id)
+)
+
+CREATE TABLE luu_anh(
+nguoi_dung_id int,
+hinh_id int,
+ngay_luu date,
+FOREIGN KEY (nguoi_dung_id) REFERENCES users(nguoi_dung_id),
+FOREIGN KEY (hinh_id) REFERENCES img(hinh_id),
+PRIMARY KEY(nguoi_dung_id,hinh_id)
+)
+
+CREATE TABLE binh_luan(
+nguoi_dung_id int,
+hinh_id int,
+ngay_binh_luan date,
+FOREIGN KEY (nguoi_dung_id) REFERENCES users(nguoi_dung_id),
+FOREIGN KEY (hinh_id) REFERENCES img(hinh_id),
+PRIMARY KEY(nguoi_dung_id,hinh_id)
+)
